@@ -57,8 +57,8 @@ export default async function CollectionsPage({
                 collection.accent === "emerald" ? "bg-emerald" : "bg-onyx"
               }`}
             >
-              <div className="absolute inset-0 opacity-25">
-                <ShotSlot dark showLabel={false} label={collection.heroShot} />
+              <div className="absolute inset-0 opacity-[0.55]">
+                <ShotSlot dark showLabel={false} label={collection.heroShot} src={collection.heroSrc} sizes="(max-width: 768px) 100vw, 50vw" />
               </div>
               <div className="t-glow left-[55%] top-[-30%] h-[420px] w-[420px]" />
               <div className="absolute inset-x-8 bottom-8 flex flex-col gap-2 text-ivory">

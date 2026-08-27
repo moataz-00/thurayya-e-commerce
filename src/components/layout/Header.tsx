@@ -255,7 +255,7 @@ export function Header({ variant = "light" }: { variant?: HeaderVariant }) {
               ))}
               <div className="flex flex-col gap-3.5">
                 <div className="h-[230px] bg-surface-3">
-                  <ShotSlot label={menu.shot} tone={3} />
+                  <ShotSlot label={menu.shot} src={menu.shotSrc} tone={3} sizes="360px" />
                 </div>
                 <div className="text-[22px]" style={{ fontFamily: "var(--font-display)" }}>
                   {t(menu.feature)}

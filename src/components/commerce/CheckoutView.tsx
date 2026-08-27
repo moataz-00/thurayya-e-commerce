@@ -115,7 +115,7 @@ export function CheckoutView() {
                         className="grid grid-cols-[64px_1fr_auto] items-center gap-4 border-b border-ink/10 py-4"
                       >
                         <div className="aspect-4/5 bg-surface-2">
-                          <ShotSlot showLabel={false} tone={2} />
+                          <ShotSlot showLabel={false} tone={2} src={product?.shots[0]?.src} sizes="70px" />
                         </div>
                         <div className="flex flex-col gap-1.5">
                           <span className="text-[14px]">
@@ -349,7 +349,7 @@ export function CheckoutView() {
                     className="grid grid-cols-[58px_1fr_auto] items-center gap-4 border-b border-ivory/10 pb-4"
                   >
                     <div className="aspect-4/5 bg-ivory/10">
-                      <ShotSlot dark showLabel={false} />
+                      <ShotSlot dark showLabel={false} src={product?.shots[0]?.src} sizes="60px" />
                     </div>
                     <div className="flex flex-col gap-1">
                       <span className="text-[12.5px]">{product ? t(product.title) : line.slug}</span>

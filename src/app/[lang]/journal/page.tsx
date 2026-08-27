@@ -78,7 +78,7 @@ export default async function JournalPage({
             className="flex flex-col gap-5 text-inherit no-underline"
           >
             <div className="aspect-16/10 bg-surface-3">
-              <ShotSlot tone={3} label={featured.heroShot} />
+              <ShotSlot tone={3} label={featured.heroShot} src={featured.heroSrc} priority sizes="(max-width: 1024px) 100vw, 55vw" />
             </div>
             <span className="text-[10px] uppercase tracking-[0.18em] text-brass">
               {featured.category[locale]} · {featured.readingTime[locale]} · {featured.date[locale]}
@@ -100,7 +100,7 @@ export default async function JournalPage({
               className="grid grid-cols-[110px_1fr] items-start gap-5 border-t border-ink/12 pt-5 text-inherit no-underline sm:grid-cols-[132px_1fr]"
             >
               <div className="aspect-4/3 bg-surface-2">
-                <ShotSlot tone={2} showLabel={false} />
+                <ShotSlot tone={2} showLabel={false} label={post.heroShot} src={post.heroSrc} sizes="140px" />
               </div>
               <div className="flex flex-col gap-2">
                 <span className="text-[9.5px] uppercase tracking-[0.16em] text-brass">

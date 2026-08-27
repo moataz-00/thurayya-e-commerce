@@ -12,6 +12,7 @@ import type {
   SpecRow,
 } from "@/lib/types";
 import { FINISHES } from "./taxonomy";
+import { FAMILY_FALLBACK, PRODUCT_IMAGES } from "@/lib/images";
 
 /* ==========================================================================
    Seeds
@@ -1056,11 +1057,14 @@ const arNum = (n: number | string) =>
 
 function shotsFor(seed: Seed): Shot[] {
   const isFurniture = seed.family === "furniture";
+  const images = PRODUCT_IMAGES[seed.slug];
+  const fallback = FAMILY_FALLBACK[seed.family];
   return [
     {
       id: "hero",
       kind: "hero",
       tone: 1,
+      src: images?.hero,
       label: {
         en: `hero — ${seed.shot.en} on ivory, 1600x2000`,
         ar: `الصورة الرئيسية — ${seed.shot.ar} على خلفية عاجية، ١٦٠٠×٢٠٠٠`,
@@ -1070,6 +1074,7 @@ function shotsFor(seed: Seed): Shot[] {
       id: "detail",
       kind: "detail",
       tone: 2,
+      src: images?.detail ?? fallback.detail,
       label: {
         en: isFurniture
           ? "detail — joint and edge profile, macro"
@@ -1081,6 +1086,7 @@ function shotsFor(seed: Seed): Shot[] {
       id: "lit",
       kind: "lit",
       tone: 3,
+      src: images?.lit ?? fallback.lit,
       label: {
         en: isFurniture ? "surface — raking light across the top" : "lit — at night, warm 2700K",
         ar: isFurniture ? "السطح — ضوء مائل عبر الوجه" : "مضاءة — ليلاً، ٢٧٠٠ كلفن دافئ",
@@ -1090,6 +1096,7 @@ function shotsFor(seed: Seed): Shot[] {
       id: "video",
       kind: "video",
       tone: 2,
+      src: images?.hero,
       label: {
         en: "video — 12s rotation, muted loop",
         ar: "فيديو — دوران ١٢ ثانية، تكرار صامت",
@@ -1099,12 +1106,14 @@ function shotsFor(seed: Seed): Shot[] {
       id: "lifestyle",
       kind: "lifestyle",
       tone: 3,
+      src: images?.lifestyle,
       label: { en: `lifestyle — ${seed.shotAlt.en}`, ar: `أجواء — ${seed.shotAlt.ar}` },
     },
     {
       id: "scale",
       kind: "scale",
       tone: 1,
+      src: images?.scale ?? fallback.scale,
       label: {
         en: "scale — dimension overlay drawing",
         ar: "المقياس — رسم بالأبعاد",

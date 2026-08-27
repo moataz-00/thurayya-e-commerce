@@ -11,6 +11,7 @@ import {
   CUSTOMER,
   ORDERS,
   SAVED_ROOMS,
+  getProduct,
   getProducts,
   getRoom,
 } from "@/lib/mock";
@@ -166,7 +167,7 @@ function Orders() {
             className="grid items-center gap-5 border-b border-ink/12 py-5 text-[12.5px] sm:grid-cols-[92px_1fr_140px_130px_100px]"
           >
             <div className="aspect-4/5 w-[76px] bg-surface-2 sm:w-auto">
-              <ShotSlot tone={2} showLabel={false} />
+              <ShotSlot tone={2} showLabel={false} src={getProduct(order.lines[0].slug)?.shots[0]?.src} sizes="100px" />
             </div>
             <div className="flex flex-col gap-1.5">
               <span className="text-[19px]" style={{ fontFamily: "var(--font-display)" }}>
@@ -250,7 +251,7 @@ function SavedRooms() {
               className="flex flex-col gap-3 text-inherit no-underline"
             >
               <div className="aspect-16/11 bg-surface-3">
-                <ShotSlot tone={3} label={room.tileShot} showLabel={false} />
+                <ShotSlot tone={3} label={room.tileShot} showLabel={false} src={room.tileSrc} sizes="(max-width: 640px) 100vw, 50vw" />
               </div>
               <span className="text-[21px]" style={{ fontFamily: "var(--font-display)" }}>
                 {room.name[locale]}

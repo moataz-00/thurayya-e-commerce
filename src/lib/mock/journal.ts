@@ -1,4 +1,5 @@
 import type { JournalPost, Localized } from "@/lib/types";
+import { JOURNAL_IMAGES } from "@/lib/images";
 
 export const JOURNAL_CATEGORIES: { slug: string; label: Localized }[] = [
   { slug: "lighting-guides", label: { en: "Lighting Guides", ar: "أدلة الإضاءة" } },
@@ -10,7 +11,7 @@ export const JOURNAL_CATEGORIES: { slug: string; label: Localized }[] = [
 
 const studio: Localized = { en: "Thurayyā Studio", ar: "استوديو ثريا" };
 
-export const POSTS: JournalPost[] = [
+const POST_SEEDS: JournalPost[] = [
   {
     slug: "choosing-a-chandelier-for-your-dining-room",
     categorySlug: "lighting-guides",
@@ -365,6 +366,21 @@ export const POSTS: JournalPost[] = [
     productSlugs: ["thurayya-seven-chandelier", "najm-halo-chandelier", "maha-tiered-chandelier"],
   },
 ];
+
+/** Attach the hero and the in-article frames, in the order the body declares them. */
+export const POSTS: JournalPost[] = POST_SEEDS.map((post) => {
+  const images = JOURNAL_IMAGES[post.slug];
+  let shotIndex = 0;
+  return {
+    ...post,
+    heroSrc: images?.hero,
+    body: post.body.map((block) =>
+      block.type === "shot"
+        ? { ...block, src: images?.blocks?.[shotIndex++] }
+        : block,
+    ),
+  };
+});
 
 export function getPost(slug: string): JournalPost | undefined {
   return POSTS.find((p) => p.slug === slug);

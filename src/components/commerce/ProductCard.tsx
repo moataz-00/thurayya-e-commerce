@@ -17,7 +17,7 @@ import { Money } from "@/components/ui/Money";
  */
 export function ProductCard({
   product,
-  priority: _priority = false,
+  priority = false,
   compact = false,
 }: {
   product: Product;
@@ -43,14 +43,25 @@ export function ProductCard({
             className="absolute inset-0 transition-opacity duration-700 ease-[var(--ease-thurayya)]"
             style={{ opacity: hover ? 0 : 1 }}
           >
-            <ShotSlot label={CARD_SHOT[product.slug]} tone={2} />
+            <ShotSlot
+              label={CARD_SHOT[product.slug]}
+              src={product.shots[0]?.src}
+              tone={2}
+              sizes="(max-width: 640px) 50vw, (max-width: 1280px) 33vw, 25vw"
+              priority={priority}
+            />
           </span>
           <span
             className="absolute inset-0 transition-opacity duration-700 ease-[var(--ease-thurayya)]"
             style={{ opacity: hover ? 1 : 0 }}
             aria-hidden
           >
-            <ShotSlot label={CARD_ALT_SHOT[product.slug]} tone={4} />
+            <ShotSlot
+              label={CARD_ALT_SHOT[product.slug]}
+              src={product.shots[4]?.src}
+              tone={4}
+              sizes="(max-width: 640px) 50vw, (max-width: 1280px) 33vw, 25vw"
+            />
           </span>
         </Link>
 

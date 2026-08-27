@@ -45,6 +45,7 @@ export default async function LightingCategoryPage({
       title={found.plural[locale]}
       intro={found.intro}
       bannerShot={found.bannerShot}
+      bannerSrc={found.bannerSrc}
       crumbs={[
         { label: d.common.home, href: routes.home(locale) },
         { label: d.nav.lighting, href: routes.lighting(locale) },

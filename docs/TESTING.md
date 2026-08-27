@@ -110,6 +110,8 @@ layout regressions show up there first.
 | Reduced motion       | Enable it at OS level — no cross-fades, no glow, no smooth scroll.         |
 | Storage blocked      | Private window with site data blocked — the site must still work, unsaved. |
 | Narrow viewport      | 320px wide. Nothing may scroll horizontally.                               |
+| Images               | No broken frames, and dark-hero text still legible over the photograph.     |
+| Offline              | Kill the network — every slot must fall back to its labelled placeholder.   |
 | Hydration            | Console must be clean. A mismatch usually means a `hydrated` guard is missing. |
 
 ---

@@ -139,6 +139,9 @@ export interface Category {
   bannerShot: Localized;
   tileShot: Localized;
   note: Localized;
+  /** Image ids from `src/lib/images.ts`. */
+  bannerSrc?: string;
+  tileSrc?: string;
 }
 
 export interface Collection {
@@ -152,6 +155,8 @@ export interface Collection {
   campaignShots: Localized[];
   accent: "onyx" | "emerald";
   productSlugs: string[];
+  heroSrc?: string;
+  campaignSrcs?: string[];
 }
 
 export interface Room {
@@ -160,6 +165,8 @@ export interface Room {
   lede: Localized;
   heroShot: Localized;
   tileShot: Localized;
+  heroSrc?: string;
+  tileSrc?: string;
   tips: Localized[];
   productSlugs: string[];
   /** Percentage hotspots over the hero image. */
@@ -176,9 +183,15 @@ export interface JournalPost {
   date: Localized;
   isoDate: string;
   heroShot: Localized;
+  heroSrc?: string;
   author: Localized;
   standfirst: Localized;
-  body: { type: "p" | "h2" | "quote" | "shot" | "list"; value: Localized | Localized[] }[];
+  body: {
+    type: "p" | "h2" | "quote" | "shot" | "list";
+    value: Localized | Localized[];
+    /** Only on `shot` blocks. */
+    src?: string;
+  }[];
   productSlugs: string[];
   featured: boolean;
 }
@@ -208,7 +221,7 @@ export interface Order {
   status: "in-production" | "shipped" | "delivered" | "cancelled";
   statusLabel: Localized;
   total: number;
-  lines: { title: Localized; variant: Localized; qty: number; price: number }[];
+  lines: { slug: string; title: Localized; variant: Localized; qty: number; price: number }[];
   timeline: { label: Localized; date: Localized; done: boolean }[];
   action: Localized;
 }
@@ -240,6 +253,7 @@ export interface Showroom {
   phone: string;
   note: Localized;
   shot: Localized;
+  shotSrc?: string;
 }
 
 export interface Faq {

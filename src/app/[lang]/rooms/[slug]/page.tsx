@@ -47,7 +47,7 @@ export default async function RoomPage({
     <PageShell>
       {/* ============================================================== hero */}
       <section className="relative h-[440px] overflow-hidden bg-surface-3 lg:h-[640px]">
-        <ShotSlot label={room.heroShot} tone={3} showLabel={false} />
+        <ShotSlot label={room.heroShot} tone={3} showLabel={false} src={room.heroSrc} priority sizes="100vw" />
         <span
           aria-hidden
           className="absolute inset-0"
@@ -129,7 +129,7 @@ export default async function RoomPage({
                 href={routes.room(locale, other.slug)}
                 className="relative block aspect-16/11 overflow-hidden bg-surface-3 text-ivory no-underline"
               >
-                <ShotSlot label={other.tileShot} tone={3} showLabel={false} />
+                <ShotSlot label={other.tileShot} tone={3} showLabel={false} src={other.tileSrc} sizes="(max-width: 768px) 100vw, 33vw" />
                 <span
                   aria-hidden
                   className="absolute inset-0"

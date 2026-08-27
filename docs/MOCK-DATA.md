@@ -19,6 +19,7 @@ fixture reports 7 × 5W, and a 96 cm fixture offers a 96 cm size.
 | `account.ts`    | The signed-in customer, three orders, addresses, appointments, boards, the starting bag, promo codes | — |
 | `support.ts`    | Six support articles and three legal documents                                        | 9 |
 | `navigation.ts` | Primary nav, four mega menus, four footer columns                                     | — |
+| `../images.ts`  | Every image on the site, keyed by product / category / room / collection / article slug | ~120 |
 | `index.ts`      | Re-exports everything **and** owns the query functions                                | — |
 
 ---
@@ -79,7 +80,10 @@ Pages never import the arrays. They call these:
 2. Use facet values that already exist in `taxonomy.ts` — a typo silently never matches.
 3. Add its slug to a `Collection.productSlugs` or `Room.productSlugs` if it belongs there.
 4. Point two or three other products' `relatedSlugs` at it so it is reachable from a PDP.
-5. `npm run check`.
+5. Add a `PRODUCT_IMAGES` entry in `src/lib/images.ts` — at minimum `hero` and
+   `lifestyle`, which are the two card frames. Without one it falls back to the labelled
+   placeholder.
+6. `npm run check`.
 
 ### Add a category
 

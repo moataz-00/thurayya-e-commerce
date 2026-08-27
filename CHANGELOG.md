@@ -6,6 +6,44 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.2.0] — 2026-08-28
+
+Real photography in every image slot.
+
+### Added
+
+- `src/lib/images.ts` — one registry mapping around 120 curated Unsplash photographs to
+  every slot on the site: 31 products (hero, lifestyle, detail, lit, scale), 14 category
+  tiles and banners, 8 room heroes and tiles, 6 collection heroes plus three campaign
+  frames each, 6 journal heroes and their in-article frames, five craft macros, four team
+  portraits, three showrooms, the four mega-menu frames and every one-off studio slot.
+- `resolveImage(id)` accepts an Unsplash photo path, a local path or any URL, and builds a
+  five-width `srcSet` for Unsplash so the CDN does the resizing.
+- `ShotSlot` now renders responsive, lazy images with per-call-site `sizes` hints and a
+  `priority` flag for above-the-fold heroes.
+
+### Changed
+
+- `Shot.src` is populated for every product; `Category`, `Room`, `Collection`,
+  `JournalPost` and `Showroom` gained matching image-id fields, attached where each data
+  file builds its export.
+- `Order.lines` gained `slug`, so the account order list can show the product image (and so
+  reorder has something to act on later).
+- Dark heroes now run the photograph at 40–45% opacity under a gradient scrim, replacing
+  the 14–20% tuned for the placeholder pattern. Ivory text keeps its contrast; a
+  placeholder-era value would have made real photography invisible.
+
+### Notes
+
+- The photographs are Unsplash stock. Free to use under the Unsplash licence, but **none of
+  them is an actual Thurayyā product** — replacing them is a launch blocker, as is
+  rewriting every `label` from a photography brief into real alt text. See
+  `docs/IMAGE-BRIEF.md`.
+- `ShotSlot` falls back to the labelled placeholder on load failure, so the site degrades to
+  the previous design rather than showing broken frames.
+
+---
+
 ## [0.1.0] — 2026-08-27
 
 First build. The complete storefront frontend, implemented from the Claude Design source

@@ -110,14 +110,14 @@ export function ProductDetail({
                   shotIndex === i ? "border-brass" : "border-transparent"
                 }`}
               >
-                <ShotSlot label={shot.label} tone={shot.tone ?? 2} showLabel={false} />
+                <ShotSlot label={shot.label} tone={shot.tone ?? 2} src={shot.src} showLabel={false} sizes="84px" />
               </button>
             ))}
           </div>
 
           <div className="order-1 flex flex-col gap-4.5 sm:order-2">
             <div className="relative aspect-4/5 overflow-hidden bg-surface-1">
-              <ShotSlot label={product.shots[shotIndex].label} tone={1} />
+              <ShotSlot label={product.shots[shotIndex].label} src={product.shots[shotIndex].src} tone={1} priority sizes="(max-width: 1024px) 100vw, 55vw" />
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0"
@@ -135,10 +135,10 @@ export function ProductDetail({
             </div>
             <div className="grid grid-cols-2 gap-4.5">
               <div className="aspect-square bg-surface-2">
-                <ShotSlot label={product.shots[1].label} tone={2} />
+                <ShotSlot label={product.shots[1].label} src={product.shots[1].src} tone={2} sizes="(max-width: 1024px) 50vw, 28vw" />
               </div>
               <div className="aspect-square bg-surface-3">
-                <ShotSlot label={product.shots[4].label} tone={3} />
+                <ShotSlot label={product.shots[4].label} src={product.shots[4].src} tone={3} sizes="(max-width: 1024px) 50vw, 28vw" />
               </div>
             </div>
           </div>
@@ -392,7 +392,7 @@ export function ProductDetail({
                   <div className="flex gap-2.5">
                     {Array.from({ length: r.shots }).map((_, i) => (
                       <div key={i} className="h-[74px] w-[74px] bg-surface-2">
-                        <ShotSlot showLabel={false} tone={i === 0 ? 2 : 3} />
+                        <ShotSlot showLabel={false} tone={i === 0 ? 2 : 3} src={product.shots[i === 0 ? 4 : 2]?.src} sizes="74px" />
                       </div>
                     ))}
                   </div>

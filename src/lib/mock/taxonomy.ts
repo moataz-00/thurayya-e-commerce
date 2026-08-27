@@ -1,10 +1,11 @@
 import type { Category, FilterGroup, Localized } from "@/lib/types";
+import { CATEGORY_IMAGES } from "@/lib/images";
 
 /* ==========================================================================
    Categories
    ========================================================================== */
 
-export const CATEGORIES: Category[] = [
+const CATEGORY_SEEDS: Category[] = [
   {
     slug: "chandeliers",
     family: "lighting",
@@ -194,6 +195,12 @@ export const CATEGORIES: Category[] = [
     note: { en: "7 pieces", ar: "٧ قطع" },
   },
 ];
+
+export const CATEGORIES: Category[] = CATEGORY_SEEDS.map((c) => ({
+  ...c,
+  tileSrc: CATEGORY_IMAGES[c.slug]?.tile,
+  bannerSrc: CATEGORY_IMAGES[c.slug]?.banner,
+}));
 
 export function getCategory(slug: string): Category | undefined {
   return CATEGORIES.find((c) => c.slug === slug);

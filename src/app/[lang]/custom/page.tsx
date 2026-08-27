@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { coerceLocale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionary";
+import { SITE_IMAGES } from "@/lib/images";
 import { CUSTOMISATION_OPTIONS, CUSTOM_FAQS, PROCESS, PROJECT_SHOTS } from "@/lib/mock";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -27,16 +28,24 @@ export default async function CustomPage({ params }: { params: Promise<{ lang: s
     <div className="t-screen bg-ivory text-ink">
       {/* ============================================================== hero */}
       <section className="relative overflow-hidden bg-onyx">
-        <div className="absolute inset-0 opacity-18">
+        <div className="absolute inset-0 opacity-[0.45]">
           <ShotSlot
             dark
             showLabel={false}
+            src={SITE_IMAGES.customHero}
+            priority
+            sizes="100vw"
             label={{
               en: "project hero — hotel lobby installation, 2400x1200",
               ar: "الصورة الرئيسية — تركيب في بهو فندق",
             }}
           />
         </div>
+        <span
+          aria-hidden
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to bottom, rgb(22 24 25 / 0.62), rgb(22 24 25 / 0.42) 45%, rgb(22 24 25 / 0.78))" }}
+        />
 
         <Header variant="over" />
 
@@ -66,22 +75,22 @@ export default async function CustomPage({ params }: { params: Promise<{ lang: s
         />
         <div className="grid gap-5 lg:grid-cols-[1.5fr_1fr_1fr]">
           <div className="aspect-4/3 bg-surface-3">
-            <ShotSlot tone={3} label={PROJECT_SHOTS[0]} />
+            <ShotSlot tone={3} label={PROJECT_SHOTS[0]} src={SITE_IMAGES.projects[0]} sizes="(max-width: 1024px) 100vw, 45vw" />
           </div>
           <div className="flex flex-col gap-5">
             <div className="min-h-[180px] flex-1 bg-surface-2">
-              <ShotSlot tone={2} label={PROJECT_SHOTS[1]} />
+              <ShotSlot tone={2} label={PROJECT_SHOTS[1]} src={SITE_IMAGES.projects[1]} sizes="(max-width: 1024px) 100vw, 28vw" />
             </div>
             <div className="min-h-[180px] flex-1 bg-surface-4">
-              <ShotSlot tone={4} label={PROJECT_SHOTS[2]} />
+              <ShotSlot tone={4} label={PROJECT_SHOTS[2]} src={SITE_IMAGES.projects[2]} sizes="(max-width: 1024px) 100vw, 28vw" />
             </div>
           </div>
           <div className="flex flex-col gap-5">
             <div className="min-h-[180px] flex-1 bg-surface-4">
-              <ShotSlot tone={4} label={PROJECT_SHOTS[3]} />
+              <ShotSlot tone={4} label={PROJECT_SHOTS[3]} src={SITE_IMAGES.projects[3]} sizes="(max-width: 1024px) 100vw, 28vw" />
             </div>
             <div className="min-h-[180px] flex-1 bg-surface-2">
-              <ShotSlot tone={2} label={PROJECT_SHOTS[4]} />
+              <ShotSlot tone={2} label={PROJECT_SHOTS[4]} src={SITE_IMAGES.projects[4]} sizes="(max-width: 1024px) 100vw, 28vw" />
             </div>
           </div>
         </div>

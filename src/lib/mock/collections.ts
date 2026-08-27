@@ -1,6 +1,7 @@
 import type { Collection } from "@/lib/types";
+import { COLLECTION_IMAGES } from "@/lib/images";
 
-export const COLLECTIONS: Collection[] = [
+const COLLECTION_SEEDS: Collection[] = [
   {
     slug: "celestial",
     name: { en: "The Celestial Collection", ar: "مجموعة سيليستيال" },
@@ -258,6 +259,12 @@ export const COLLECTIONS: Collection[] = [
     productSlugs: ["orion-cascade-chandelier", "maha-tiered-chandelier", "thurayya-cluster-rug"],
   },
 ];
+
+export const COLLECTIONS: Collection[] = COLLECTION_SEEDS.map((c) => ({
+  ...c,
+  heroSrc: COLLECTION_IMAGES[c.slug]?.hero,
+  campaignSrcs: COLLECTION_IMAGES[c.slug]?.campaign,
+}));
 
 export function getCollection(slug: string): Collection | undefined {
   return COLLECTIONS.find((c) => c.slug === slug);

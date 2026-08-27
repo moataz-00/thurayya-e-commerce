@@ -1,6 +1,7 @@
 import type { Room } from "@/lib/types";
+import { ROOM_IMAGES } from "@/lib/images";
 
-export const ROOMS: Room[] = [
+const ROOM_SEEDS: Room[] = [
   {
     slug: "living-room",
     name: { en: "The Living Room", ar: "غرفة المعيشة" },
@@ -241,6 +242,12 @@ export const ROOMS: Room[] = [
     ],
   },
 ];
+
+export const ROOMS: Room[] = ROOM_SEEDS.map((r) => ({
+  ...r,
+  heroSrc: ROOM_IMAGES[r.slug]?.hero,
+  tileSrc: ROOM_IMAGES[r.slug]?.tile,
+}));
 
 export function getRoom(slug: string): Room | undefined {
   return ROOMS.find((r) => r.slug === slug);

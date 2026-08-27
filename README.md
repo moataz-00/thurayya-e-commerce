@@ -50,12 +50,16 @@ browser asks for Arabic first).
   orders, load-more paging, empty and loading states.
 - **A living style guide** at `/[lang]/style-guide` rendered from the same components
   production uses.
+- **Real photography throughout** — around 120 curated images across products, categories,
+  rooms, collections, journal and studio, responsive via `srcSet` and lazy by default,
+  falling back to the labelled brief if an image ever fails.
 
 ## What is deliberately not here
 
 - No backend, API routes, authentication or persistence beyond the browser.
-- No real photography — every image is a labelled `ShotSlot` placeholder that names the
-  shot it is waiting for. See [docs/IMAGE-BRIEF.md](docs/IMAGE-BRIEF.md).
+- No commissioned photography. Every image slot is filled with Unsplash stock, mapped in
+  `src/lib/images.ts` — free to use, but **none of it is an actual Thurayyā product**, so
+  it has to be replaced before launch. See [docs/IMAGE-BRIEF.md](docs/IMAGE-BRIEF.md).
 - No payment integration. The checkout takes card fields, charges nothing, and says so.
 - No analytics or tracking. The cookie banner keeps analytics off until accepted.
 
@@ -90,6 +94,7 @@ src/
     style-guide/       The interactive half of /style-guide
     ui/                Primitives: shot slots, money, fields, accordion, toast
   lib/
+    images.ts          Every image on the site, mapped in one registry
     i18n/              Locale config, dictionaries, provider
     mock/              The entire data layer and its query functions
     store/             Bag, wishlist, currency, toast
@@ -114,7 +119,7 @@ docs/                  The documents listed below
 | [MOCK-DATA.md](docs/MOCK-DATA.md)                             | What is mocked, where it lives, how to change it        |
 | [I18N-RTL.md](docs/I18N-RTL.md)                               | Bilingual rules, RTL mirroring, numerals, currency      |
 | [ACCESSIBILITY.md](docs/ACCESSIBILITY.md)                     | The WCAG 2.2 AA commitments this build makes            |
-| [IMAGE-BRIEF.md](docs/IMAGE-BRIEF.md)                         | The photography brief every placeholder is waiting on   |
+| [IMAGE-BRIEF.md](docs/IMAGE-BRIEF.md)                         | How images are wired, and how to swap in the real shoot |
 | [BACKEND-INTEGRATION.md](docs/BACKEND-INTEGRATION.md)         | Exactly what to replace when the API arrives            |
 | [TESTING.md](docs/TESTING.md)                                 | The manual QA pass, route by route                      |
 | [ROADMAP.md](docs/ROADMAP.md)                                 | What is next, in the order it should happen             |

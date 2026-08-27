@@ -45,7 +45,7 @@ export default async function RoomsPage({ params }: { params: Promise<{ lang: st
             href={routes.room(locale, room.slug)}
             className="relative block aspect-16/11 overflow-hidden bg-surface-3 text-ivory no-underline"
           >
-            <ShotSlot label={room.tileShot} tone={3} showLabel={false} />
+            <ShotSlot label={room.tileShot} tone={3} showLabel={false} src={room.tileSrc} sizes="(max-width: 768px) 100vw, 33vw" />
             <span
               aria-hidden
               className="absolute inset-0"

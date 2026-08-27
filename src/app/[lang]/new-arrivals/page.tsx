@@ -3,6 +3,7 @@ import { coerceLocale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { routes } from "@/lib/routes";
 import { ListingPage } from "@/components/commerce/ListingPage";
+import { SITE_IMAGES } from "@/lib/images";
 
 export async function generateMetadata({
   params,
@@ -31,6 +32,7 @@ export default async function NewArrivalsPage({
         en: "Everything released in the last two seasons, newest first. Pieces are added to a collection only when the collection is still open.",
         ar: "كل ما صدر في الموسمين الأخيرين، الأحدث أولاً. ولا تُضاف القطع إلى مجموعة إلا وهي ما تزال مفتوحة.",
       }}
+      bannerSrc={SITE_IMAGES.newArrivalsBanner}
       bannerShot={{
         en: "new arrivals banner — studio shelf, latest pieces",
         ar: "بانر الوصول الحديث — رف الاستوديو، أحدث القطع",

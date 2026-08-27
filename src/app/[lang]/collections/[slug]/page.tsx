@@ -48,9 +48,14 @@ export default async function CollectionPage({
           collection.accent === "emerald" ? "bg-emerald" : "bg-onyx"
         }`}
       >
-        <div className="absolute inset-0 opacity-20">
-          <ShotSlot dark showLabel={false} label={collection.heroShot} />
+        <div className="absolute inset-0 opacity-[0.42]">
+          <ShotSlot dark showLabel={false} label={collection.heroShot} src={collection.heroSrc} priority sizes="100vw" />
         </div>
+        <span
+          aria-hidden
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to bottom, rgb(22 24 25 / 0.62), rgb(22 24 25 / 0.42) 45%, rgb(22 24 25 / 0.78))" }}
+        />
         <div className="t-glow left-[62%] top-[-180px] h-[820px] w-[820px]" />
 
         <Header variant="over" />
@@ -82,14 +87,14 @@ export default async function CollectionPage({
       {/* ========================================================= campaign */}
       <section className="t-shell grid gap-6 py-20 lg:grid-cols-[1.4fr_1fr] lg:py-24">
         <div className="aspect-16/11 bg-surface-3">
-          <ShotSlot tone={3} label={collection.campaignShots[0]} />
+          <ShotSlot tone={3} label={collection.campaignShots[0]} src={collection.campaignSrcs?.[0]} sizes="(max-width: 1024px) 100vw, 58vw" />
         </div>
         <div className="flex flex-col gap-6">
           <div className="min-h-[200px] flex-1 bg-surface-2">
-            <ShotSlot tone={2} label={collection.campaignShots[1]} />
+            <ShotSlot tone={2} label={collection.campaignShots[1]} src={collection.campaignSrcs?.[1]} sizes="(max-width: 1024px) 100vw, 40vw" />
           </div>
           <div className="min-h-[200px] flex-1 bg-surface-4">
-            <ShotSlot tone={4} label={collection.campaignShots[2]} />
+            <ShotSlot tone={4} label={collection.campaignShots[2]} src={collection.campaignSrcs?.[2]} sizes="(max-width: 1024px) 100vw, 40vw" />
           </div>
         </div>
       </section>

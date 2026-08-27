@@ -1,4 +1,5 @@
 import type { Craft, Faq, Localized, PressQuote, Showroom } from "@/lib/types";
+import { SHOWROOM_IMAGES } from "@/lib/images";
 
 /* ==========================================================================
    Materials & craft
@@ -426,7 +427,7 @@ export const TEAM: { name: Localized; role: Localized; shot: Localized }[] = [
    Showrooms
    ========================================================================== */
 
-export const SHOWROOMS: Showroom[] = [
+const SHOWROOM_SEEDS: Showroom[] = [
   {
     slug: "zamalek",
     city: { en: "Cairo — Zamalek", ar: "القاهرة — الزمالك" },
@@ -473,6 +474,11 @@ export const SHOWROOMS: Showroom[] = [
     shot: { en: "studio office — Riyadh, drawings", ar: "مكتب الاستوديو — الرياض، رسومات" },
   },
 ];
+
+export const SHOWROOMS: Showroom[] = SHOWROOM_SEEDS.map((s) => ({
+  ...s,
+  shotSrc: SHOWROOM_IMAGES[s.slug],
+}));
 
 export const CONTACT_SUBJECTS: Localized[] = [
   { en: "General enquiry", ar: "استفسار عام" },

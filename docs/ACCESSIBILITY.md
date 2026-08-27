@@ -68,11 +68,13 @@ scroll-jacking and no auto-playing video.
 
 ## Imagery
 
-Placeholders render as `role="img"` with the shot brief as their accessible name, so a
-screen reader announces what is intended rather than nothing. When real photography lands,
-`ShotSlot` passes the same label to `alt` — **that label must become a real alt text at
-that point**, because "hero — chandelier front elevation on ivory, 1600×2000" is a
-production note, not a description for a reader. See [IMAGE-BRIEF.md](IMAGE-BRIEF.md).
+Every image carries an `alt`, and slots with no image render as `role="img"` with the same
+text as their accessible name — so nothing is ever announced as unlabelled.
+
+**The alt text is currently the photography brief, and that is a defect.** "hero —
+chandelier front elevation on ivory, 1600×2000" is a note to a photographer, not a
+description for a reader. Rewriting every `label` in the mock layer is a launch blocker,
+not a nice-to-have. See [IMAGE-BRIEF.md](IMAGE-BRIEF.md).
 
 ---
 
@@ -99,6 +101,6 @@ and letter-spacing, which damage Arabic letterforms.
 - [ ] Automated axe pass on every route, both locales.
 - [ ] Screen-reader walkthrough (NVDA + VoiceOver) of the PDP and the checkout.
 - [ ] Focus-order audit of the mega menu with a keyboard only.
-- [ ] Real `alt` text for every photograph once shooting is done.
+- [ ] Real `alt` text for every photograph — the labels are still production briefs.
 - [ ] Zoom to 400% and 320px-wide reflow check.
 - [ ] Confirm the brass focus ring is visible against every dark surface it can land on.

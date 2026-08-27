@@ -1,5 +1,6 @@
 import type { Locale, Localized } from "@/lib/types";
 import { routes } from "@/lib/routes";
+import { SITE_IMAGES } from "@/lib/images";
 
 export interface NavLink {
   label: Localized;
@@ -14,6 +15,7 @@ export interface MenuColumn {
 export interface MegaMenu {
   columns: MenuColumn[];
   shot: Localized;
+  shotSrc: string;
   feature: Localized;
   featureHref: (l: Locale) => string;
 }
@@ -130,6 +132,7 @@ export const MEGA_MENUS: Record<string, MegaMenu> = {
       },
     ],
     shot: { en: "chandelier detail — brass + alabaster", ar: "تفصيل ثريا — نحاس وألاباستر" },
+    shotSrc: SITE_IMAGES.menuLighting,
     feature: {
       en: "The Celestial Collection — newly released",
       ar: "مجموعة سيليستيال — إصدار جديد",
@@ -169,6 +172,7 @@ export const MEGA_MENUS: Record<string, MegaMenu> = {
       },
     ],
     shot: { en: "travertine console, side light", ar: "كونسول ترافرتين، إضاءة جانبية" },
+    shotSrc: SITE_IMAGES.menuFurniture,
     feature: { en: "Brass Atelier — furniture made for the light", ar: "أتيليه النحاس — أثاث صُنع للضوء" },
     featureHref: (l) => routes.collection(l, "brass-atelier"),
   },
@@ -201,6 +205,7 @@ export const MEGA_MENUS: Record<string, MegaMenu> = {
       },
     ],
     shot: { en: "celestial collection campaign", ar: "حملة مجموعة سيليستيال" },
+    shotSrc: SITE_IMAGES.menuCollections,
     feature: { en: "The Celestial Collection — newly released", ar: "مجموعة سيليستيال — إصدار جديد" },
     featureHref: (l) => routes.collection(l, "celestial"),
   },
@@ -235,6 +240,7 @@ export const MEGA_MENUS: Record<string, MegaMenu> = {
       },
     ],
     shot: { en: "dining room, evening light", ar: "غرفة الطعام، ضوء المساء" },
+    shotSrc: SITE_IMAGES.menuRooms,
     feature: { en: "Six rooms, photographed at dusk", ar: "ست مساحات، صُوِّرت عند الغروب" },
     featureHref: (l) => routes.rooms(l),
   },

@@ -50,7 +50,7 @@ export default async function ShowroomsPage({
         {SHOWROOMS.map((showroom) => (
           <div key={showroom.slug} className="flex flex-col gap-4">
             <div className="aspect-4/3 bg-surface-3">
-              <ShotSlot tone={3} label={showroom.shot} />
+              <ShotSlot tone={3} label={showroom.shot} src={showroom.shotSrc} sizes="(max-width: 1024px) 100vw, 33vw" />
             </div>
             <span className="text-[24px]" style={{ fontFamily: "var(--font-display)" }}>
               {showroom.city[locale]}

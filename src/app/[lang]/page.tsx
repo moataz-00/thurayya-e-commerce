@@ -3,6 +3,7 @@ import type { Locale } from "@/lib/types";
 import { coerceLocale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { routes } from "@/lib/routes";
+import { CRAFT_IMAGES, SITE_IMAGES } from "@/lib/images";
 import {
   CRAFTS,
   HOME_CATEGORY_TILES,
@@ -38,16 +39,24 @@ export default async function HomePage({
     <div className="t-screen bg-ivory text-ink">
       {/* ============================================================== hero */}
       <section className="relative overflow-hidden bg-onyx">
-        <div className="absolute inset-0 opacity-16">
+        <div className="absolute inset-0 opacity-[0.45]">
           <ShotSlot
             dark
             showLabel={false}
+            src={SITE_IMAGES.homeHero}
+            priority
+            sizes="100vw"
             label={{
               en: "hero — cinematic chandelier in warm architectural interior, 2400x1200",
               ar: "الصورة الرئيسية — ثريا في فراغ معماري دافئ",
             }}
           />
         </div>
+        <span
+          aria-hidden
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to bottom, rgb(22 24 25 / 0.62), rgb(22 24 25 / 0.42) 45%, rgb(22 24 25 / 0.78))" }}
+        />
         <div className="t-glow left-1/2 top-[-140px] h-[900px] w-[900px] -translate-x-1/2" />
 
         <Header variant="over" />
@@ -102,7 +111,7 @@ export default async function HomePage({
                 className="flex flex-col gap-3.5 text-inherit no-underline"
               >
                 <div className="aspect-3/4 bg-surface-2">
-                  <ShotSlot label={category.tileShot} tone={2} />
+                  <ShotSlot label={category.tileShot} src={category.tileSrc} tone={2} sizes="(max-width: 768px) 50vw, 20vw" />
                 </div>
                 <div className="flex flex-col gap-1">
                   <span className="text-[22px]" style={{ fontFamily: "var(--font-display)" }}>
@@ -124,6 +133,8 @@ export default async function HomePage({
           <div className="aspect-4/5 bg-surface-3">
             <ShotSlot
               tone={3}
+              src={SITE_IMAGES.homeStory}
+              sizes="(max-width: 1024px) 100vw, 50vw"
               label={{
                 en: "atelier — hands patinating a brass arm, 1200x1500",
                 ar: "الأتيليه — يدان تعتّقان ذراعاً نحاسية",
@@ -160,10 +171,12 @@ export default async function HomePage({
 
       {/* ================================================ collection banner */}
       <section className="relative overflow-hidden bg-emerald text-ivory">
-        <div className="absolute inset-0 opacity-14">
+        <div className="absolute inset-0 opacity-[0.3]">
           <ShotSlot
             dark
             showLabel={false}
+            src={SITE_IMAGES.homeCollection}
+            sizes="100vw"
             label={{
               en: "celestial collection campaign — full bleed, 2400x1100",
               ar: "حملة مجموعة سيليستيال — بعرض الشاشة",
@@ -189,6 +202,8 @@ export default async function HomePage({
           <div className="aspect-4/3 bg-ivory/10">
             <ShotSlot
               dark
+              src={SITE_IMAGES.homeCollectionInset}
+              sizes="(max-width: 1024px) 100vw, 50vw"
               label={{
                 en: "collection hero — chandelier in emerald room",
                 ar: "صورة المجموعة — ثريا في غرفة زمردية",
@@ -211,7 +226,7 @@ export default async function HomePage({
               href={routes.room(locale, room.slug)}
               className="relative block aspect-16/11 overflow-hidden bg-surface-3 text-ivory no-underline"
             >
-              <ShotSlot label={room.tileShot} tone={3} showLabel={false} />
+              <ShotSlot label={room.tileShot} src={room.tileSrc} tone={3} showLabel={false} sizes="(max-width: 640px) 100vw, 33vw" />
               <span
                 aria-hidden
                 className="absolute inset-0"
@@ -248,6 +263,8 @@ export default async function HomePage({
                 <div className="aspect-square bg-ivory/8">
                   <ShotSlot
                     dark
+                    src={CRAFT_IMAGES[craft.slug]}
+                    sizes="(max-width: 768px) 50vw, 20vw"
                     label={{
                       en: `${craft.name.en} — macro detail`,
                       ar: `${craft.name.ar} — تفصيل قريب`,
@@ -296,6 +313,8 @@ export default async function HomePage({
           <div className="aspect-5/4 bg-surface-3">
             <ShotSlot
               tone={3}
+              src={SITE_IMAGES.homeConsultation}
+              sizes="(max-width: 1024px) 100vw, 50vw"
               label={{
                 en: "designer with floor plan and finish samples",
                 ar: "مصممة مع مخطط المساحة وعينات التشطيب",
@@ -353,7 +372,7 @@ export default async function HomePage({
               className="flex flex-col gap-4 text-inherit no-underline"
             >
               <div className="aspect-3/2 bg-surface-2">
-                <ShotSlot label={post.heroShot} tone={2} />
+                <ShotSlot label={post.heroShot} src={post.heroSrc} tone={2} sizes="(max-width: 768px) 100vw, 33vw" />
               </div>
               <span className="text-[10px] uppercase tracking-[0.16em] text-brass">
                 {t(post.category)} · {t(post.readingTime)}

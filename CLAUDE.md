@@ -36,6 +36,12 @@ There is no test suite and no linter configured. `npm run check` is the gate.
   cannot hand a filter callback to a client component.
 - **Prices are EGP integers everywhere.** Only `formatMoney` converts.
 - **Every internal href goes through `src/lib/routes.ts`.**
+- **Every image goes through `ShotSlot` and `src/lib/images.ts`.** Ids are Unsplash photo
+  paths today and local paths later; `resolveImage` handles both. Always pass a `sizes`
+  hint, and `priority` only above the fold.
+- **Dark heroes run the photo at 40–45% under a scrim.** The design specified 16–20% for
+  the placeholder pattern; real photography needs more to read. Changing it means
+  re-checking text contrast.
 
 ## Conventions
 

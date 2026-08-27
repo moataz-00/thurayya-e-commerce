@@ -4,6 +4,7 @@ import { coerceLocale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { routes } from "@/lib/routes";
 import { CUSTOMER } from "@/lib/mock";
+import { SITE_IMAGES } from "@/lib/images";
 import { PageShell } from "@/components/layout/PageShell";
 import { ShotSlot } from "@/components/ui/ShotSlot";
 import { TextField } from "@/components/ui/form";
@@ -52,10 +53,12 @@ export default async function SignInPage({ params }: { params: Promise<{ lang: s
         </div>
 
         <div className="relative min-h-[360px] bg-onyx">
-          <div className="absolute inset-0 opacity-25">
+          <div className="absolute inset-0 opacity-[0.55]">
             <ShotSlot
               dark
               showLabel={false}
+              src={SITE_IMAGES.signIn}
+              sizes="(max-width: 1024px) 100vw, 50vw"
               label={{
                 en: "account — chandelier detail at dusk",
                 ar: "الحساب — تفصيل ثريا عند الغروب",

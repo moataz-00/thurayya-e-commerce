@@ -19,6 +19,7 @@ export const ORDERS: Order[] = [
     total: 184000,
     lines: [
       {
+        slug: "thurayya-seven-chandelier",
         title: { en: "Thurayyā Seven Chandelier", ar: "ثريا سيفن" },
         variant: { en: "Antique brass · Ø 96 cm · 2700K", ar: "نحاس عتيق · قطر ٩٦ سم · ٢٧٠٠ كلفن" },
         qty: 1,
@@ -44,6 +45,7 @@ export const ORDERS: Order[] = [
     total: 57800,
     lines: [
       {
+        slug: "alabaster-wall-light",
         title: { en: "Alabaster Wall Light, pair", ar: "إضاءة الألاباستر الحائطية، زوج" },
         variant: { en: "Hand-carved alabaster", ar: "ألاباستر منحوت يدوياً" },
         qty: 2,
@@ -66,6 +68,7 @@ export const ORDERS: Order[] = [
     total: 21500,
     lines: [
       {
+        slug: "nour-ceiling-flush",
         title: { en: "Nour Ceiling Flush", ar: "نور الملاصقة" },
         variant: { en: "Alabaster · brushed brass ring", ar: "ألاباستر · حلقة نحاس مصنفر" },
         qty: 1,

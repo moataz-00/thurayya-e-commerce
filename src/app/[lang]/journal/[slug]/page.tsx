@@ -75,7 +75,7 @@ export default async function JournalArticlePage({
         </header>
 
         <div className="aspect-16/10 bg-surface-3" style={{ margin: "34px 0" }}>
-          <ShotSlot tone={3} label={post.heroShot} />
+          <ShotSlot tone={3} label={post.heroShot} src={post.heroSrc} priority sizes="(max-width: 900px) 100vw, 820px" />
         </div>
 
         <p
@@ -108,7 +108,7 @@ export default async function JournalArticlePage({
             if (block.type === "shot") {
               return (
                 <div key={i} className="my-10 aspect-16/9 bg-surface-2">
-                  <ShotSlot tone={2} label={block.value as Localized} />
+                  <ShotSlot tone={2} label={block.value as Localized} src={block.src} sizes="(max-width: 900px) 100vw, 820px" />
                 </div>
               );
             }
@@ -154,7 +154,7 @@ export default async function JournalArticlePage({
               className="flex flex-col gap-4 text-inherit no-underline"
             >
               <div className="aspect-3/2 bg-surface-2">
-                <ShotSlot tone={2} label={p.heroShot} />
+                <ShotSlot tone={2} label={p.heroShot} src={p.heroSrc} sizes="(max-width: 768px) 100vw, 33vw" />
               </div>
               <span className="text-[10px] uppercase tracking-[0.16em] text-brass">
                 {p.category[locale]} · {p.readingTime[locale]}

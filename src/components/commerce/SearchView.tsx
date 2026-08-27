@@ -185,7 +185,7 @@ export function SearchView({ initialQuery = "" }: { initialQuery?: string }) {
                     className="grid grid-cols-[76px_1fr_auto] items-center gap-4.5 border-b border-ivory/10 pb-4 text-ivory no-underline"
                   >
                     <div className="aspect-4/5 bg-ivory/10">
-                      <ShotSlot dark showLabel={false} />
+                      <ShotSlot dark showLabel={false} src={p.shots[0]?.src} sizes="80px" />
                     </div>
                     <div className="flex flex-col gap-1.5">
                       <span className="text-[19px]" style={{ fontFamily: "var(--font-display)" }}>

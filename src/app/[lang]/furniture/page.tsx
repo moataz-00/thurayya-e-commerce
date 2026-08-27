@@ -3,6 +3,7 @@ import { coerceLocale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { routes } from "@/lib/routes";
 import { ListingPage } from "@/components/commerce/ListingPage";
+import { SITE_IMAGES } from "@/lib/images";
 
 export async function generateMetadata({
   params,
@@ -34,6 +35,7 @@ export default async function FurniturePage({
         en: "Walnut, travertine and patinated brass, proportioned to the fixtures above them. Short lines, made to order, cut to your room when the standard sizes miss.",
         ar: "جوز وترافرتين ونحاس معتّق، بنسب مشتقة من الوحدات المعلقة فوقها. خطوط قصيرة تُصنع حسب الطلب، وتُقصّ على مقاس غرفتك إن لم تناسبك المقاسات القياسية.",
       }}
+      bannerSrc={SITE_IMAGES.furnitureBanner}
       bannerShot={{
         en: "category banner — travertine console, side light",
         ar: "بانر الفئة — كونسول ترافرتين",

@@ -18,6 +18,7 @@ export function ListingPage({
   title,
   intro,
   bannerShot,
+  bannerSrc,
   crumbs,
   scope,
   openGroup,
@@ -27,6 +28,7 @@ export function ListingPage({
   title: string;
   intro: Localized | string;
   bannerShot: Localized | string;
+  bannerSrc?: string;
   crumbs: { label: string; href?: string }[];
   scope: ListOptions;
   openGroup?: string;
@@ -38,9 +40,14 @@ export function ListingPage({
   return (
     <PageShell>
       <section className="relative overflow-hidden bg-onyx text-ivory">
-        <div className="absolute inset-0 opacity-18">
-          <ShotSlot dark showLabel={false} label={bannerShot} />
+        <div className="absolute inset-0 opacity-[0.4]">
+          <ShotSlot dark showLabel={false} label={bannerShot} src={bannerSrc} priority sizes="100vw" />
         </div>
+        <span
+          aria-hidden
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to bottom, rgb(22 24 25 / 0.55), rgb(22 24 25 / 0.75))" }}
+        />
         <div className="t-shell relative pb-16 pt-8 lg:pb-19">
           <div className="mb-12 lg:mb-15">
             <Breadcrumbs dark items={crumbs} />

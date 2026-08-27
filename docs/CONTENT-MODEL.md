@@ -72,8 +72,12 @@ a bug: furniture should not appear under a chandelier diameter filter.
 | `questions`     | `Question[]`      |                                                                   |
 | `relatedSlugs`  | `string[]`        | "Complete the Room"; `alsoLike()` is scored, not authored         |
 
-`Shot` carries `label` (the brief), `kind`, an optional placeholder `tone` 1–4 and an
-optional `src` for when the real photograph exists.
+`Shot` carries `label` (alt text, and the brief when there is no image), `kind`, a
+placeholder `tone` 1–4 and `src` — an image id resolved by `src/lib/images.ts`.
+
+`Category`, `Room`, `Collection`, `JournalPost` and `Showroom` carry the same kind of id
+in `tileSrc` / `bannerSrc` / `heroSrc` / `campaignSrcs` / `shotSrc`, attached where each
+data file builds its export.
 
 ---
 

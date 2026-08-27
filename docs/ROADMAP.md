@@ -34,8 +34,9 @@ In dependency order. See [BACKEND-INTEGRATION.md](BACKEND-INTEGRATION.md) for th
    transfer, Apple Pay, cash on delivery.
 5. **Forms.** Server actions with validation, spam protection and rate limiting. Real
    consultation availability instead of the hard-coded week.
-6. **Photography.** Set `src` on the `Shot` records, swap in `next/image`, rewrite the shot
-   briefs as alt text.
+6. **Photography.** Replace the Unsplash stock in `src/lib/images.ts` with the commissioned
+   shoot, and rewrite every `label` as a real alt description — the labels are production
+   briefs today, which screen readers currently read out. Launch blocker.
 7. **CMS for the journal.** The five-block body vocabulary was kept small for exactly this.
 
 ## Later — operate it
@@ -78,3 +79,5 @@ Recording these so they are not rediscovered as gaps:
 | Consultation availability is hard-coded          | `CONSULTATION_DAYS` / `_TIMES`           | Before launch            |
 | Forms submit nowhere                             | `src/components/forms/`                  | Before launch            |
 | Fonts load from Google via `<link>`              | `app/[lang]/layout.tsx`                  | Performance budget       |
+| Images are Unsplash stock, not the real pieces   | `src/lib/images.ts`                      | Before launch            |
+| Alt text is still the photography brief          | every `ShotSlot` `label`                 | Before launch            |

@@ -4,6 +4,7 @@ import { coerceLocale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { routes } from "@/lib/routes";
 import { TRADE_BENEFITS, TRADE_DOWNLOADS } from "@/lib/mock";
+import { SITE_IMAGES } from "@/lib/images";
 import { PageShell } from "@/components/layout/PageShell";
 import { ShotSlot } from "@/components/ui/ShotSlot";
 import { TradeApplicationForm } from "@/components/forms/ProjectForms";
@@ -47,6 +48,9 @@ export default async function TradePage({ params }: { params: Promise<{ lang: st
           <div className="aspect-4/3 bg-ivory/10">
             <ShotSlot
               dark
+              src={SITE_IMAGES.tradeSamples}
+              priority
+              sizes="(max-width: 1024px) 100vw, 420px"
               label={{
                 en: "trade — finish samples and drawings on a table",
                 ar: "المحترفون — عينات تشطيب ورسومات على طاولة",
@@ -104,12 +108,16 @@ export default async function TradePage({ params }: { params: Promise<{ lang: st
             <div className="aspect-square bg-surface-2">
               <ShotSlot
                 tone={2}
+                src={SITE_IMAGES.tradeProjectA}
+                sizes="(max-width: 1024px) 50vw, 25vw"
                 label={{ en: "hospitality project — 42 fixtures", ar: "مشروع ضيافة — ٤٢ وحدة" }}
               />
             </div>
             <div className="aspect-square bg-surface-3">
               <ShotSlot
                 tone={3}
+                src={SITE_IMAGES.tradeProjectB}
+                sizes="(max-width: 1024px) 50vw, 25vw"
                 label={{
                   en: "developer show unit — Sheikh Zayed",
                   ar: "وحدة عرض لمطوّر — الشيخ زايد",

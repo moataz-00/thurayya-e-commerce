@@ -4,6 +4,7 @@ import { coerceLocale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { routes } from "@/lib/routes";
 import { CRAFTS, PRESS, TEAM, TIMELINE, VALUES } from "@/lib/mock";
+import { CRAFT_IMAGES, SITE_IMAGES, TEAM_IMAGES } from "@/lib/images";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ShotSlot } from "@/components/ui/ShotSlot";
@@ -27,16 +28,24 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
   return (
     <div className="t-screen bg-ivory text-ink">
       <section className="relative overflow-hidden bg-onyx">
-        <div className="absolute inset-0 opacity-16">
+        <div className="absolute inset-0 opacity-[0.45]">
           <ShotSlot
             dark
             showLabel={false}
+            src={SITE_IMAGES.aboutHero}
+            priority
+            sizes="100vw"
             label={{
               en: "atelier wide — the workshop at dusk, 2400x1200",
               ar: "الأتيليه — الورشة عند الغروب",
             }}
           />
         </div>
+        <span
+          aria-hidden
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to bottom, rgb(22 24 25 / 0.62), rgb(22 24 25 / 0.42) 45%, rgb(22 24 25 / 0.78))" }}
+        />
         <div className="t-glow left-[20%] top-[-160px] h-[700px] w-[700px]" />
 
         <Header variant="over" />
@@ -101,6 +110,8 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
           <div className="aspect-16/11 bg-surface-3">
             <ShotSlot
               tone={3}
+              src={SITE_IMAGES.aboutAtelier}
+              sizes="(max-width: 1024px) 100vw, 58vw"
               label={{ en: "atelier — the bench, wide", ar: "الأتيليه — المنضدة، لقطة واسعة" }}
             />
           </div>
@@ -110,6 +121,8 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
                 <div className="aspect-16/10 bg-surface-2">
                   <ShotSlot
                     tone={2}
+                    src={CRAFT_IMAGES[craft.slug]}
+                    sizes="(max-width: 1024px) 100vw, 40vw"
                     label={{
                       en: `${craft.name.en} — macro detail`,
                       ar: `${craft.name.ar} — تفصيل قريب`,
@@ -127,10 +140,10 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
       <section className="t-shell pb-20">
         <SectionHead title={d.about.teamTitle} />
         <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
-          {TEAM.map((person) => (
+          {TEAM.map((person, i) => (
             <div key={person.name.en} className="flex flex-col gap-3.5">
               <div className="aspect-4/5 bg-surface-2">
-                <ShotSlot tone={2} label={person.shot} />
+                <ShotSlot tone={2} label={person.shot} src={TEAM_IMAGES[i]} sizes="(max-width: 768px) 50vw, 25vw" />
               </div>
               <span className="text-[21px]" style={{ fontFamily: "var(--font-display)" }}>
                 {person.name[locale]}

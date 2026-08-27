@@ -133,6 +133,7 @@ Logical properties are used throughout (`ms-`, `me-`, `ps-`, `pe-`, `start-`, `e
 | Anything commerce-shaped                         | `src/components/commerce/`                  |
 | A domain type                                    | `src/lib/types.ts`                          |
 | Money maths                                      | `src/lib/format.ts` — nowhere else          |
+| An image                                         | `src/lib/images.ts`, then render via `ShotSlot` |
 
 ---
 
@@ -142,7 +143,10 @@ Logical properties are used throughout (`ms-`, `me-`, `ps-`, `pe-`, `start-`, `e
   free. Past a few hundred, move filtering to the server and paginate.
 - **Search is a substring scorer**, not an index. It is honest about that: it exists so the
   search page has something real to render.
-- **`ShotSlot` renders a labelled placeholder.** It already accepts `src`; wiring
-  `next/image` is one component change, not a page-by-page rewrite.
+- **Images are hotlinked from the Unsplash CDN**, which resizes them for us. That keeps
+  dev and production identical and avoids a server-side optimiser, but it means the site
+  needs a network to look finished. `ShotSlot` falls back to the labelled placeholder when
+  an image fails, so it degrades rather than breaks. Self-hosting is a change in
+  `src/lib/images.ts` alone — see [IMAGE-BRIEF.md](IMAGE-BRIEF.md).
 - **Forms do not submit anywhere.** Each one sets a local `sent` flag and shows the
   confirmation copy, so the success state is designed and reviewable.

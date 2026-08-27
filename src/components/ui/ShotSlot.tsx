@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import type { Localized } from "@/lib/types";
 import { useLocale } from "@/lib/i18n/provider";
+import { resolveImage } from "@/lib/images";
 
 const TONES: Record<number, string> = {
   1: "bg-surface-1",
@@ -11,11 +13,15 @@ const TONES: Record<number, string> = {
 };
 
 /**
- * Photography placeholder.
+ * Every image on the site renders through here.
  *
- * The design ships labelled slots rather than images so the shot brief stays
- * visible to whoever is commissioning the photography. When a real image
- * exists, pass `src` and this renders it instead - nothing else has to change.
+ * `src` is an image id from `src/lib/images.ts` — an Unsplash photo path, a
+ * local path, or any URL. Unsplash resizes on its own CDN, so we hand the
+ * browser a `srcSet` and let it choose; there is no server-side optimiser in
+ * the loop, which keeps dev and production identical.
+ *
+ * With no `src` (or if the image fails to load) the slot falls back to the
+ * labelled placeholder, so the photography brief stays visible in the design.
  * See docs/IMAGE-BRIEF.md.
  */
 export function ShotSlot({
@@ -25,6 +31,9 @@ export function ShotSlot({
   src,
   className = "",
   showLabel = true,
+  sizes = "(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw",
+  priority = false,
+  position = "center",
 }: {
   label?: Localized | string;
   tone?: 1 | 2 | 3 | 4;
@@ -32,18 +41,29 @@ export function ShotSlot({
   src?: string;
   className?: string;
   showLabel?: boolean;
+  sizes?: string;
+  priority?: boolean;
+  position?: string;
 }) {
   const { locale } = useLocale();
+  const [failed, setFailed] = useState(false);
   const text = typeof label === "string" ? label : label ? (label[locale] ?? label.en) : "";
+  const image = failed ? undefined : resolveImage(src);
 
-  if (src) {
+  if (image) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img
-        src={src}
+        src={image.src}
+        srcSet={image.srcSet}
+        sizes={sizes}
         alt={text}
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        fetchPriority={priority ? "high" : "auto"}
+        onError={() => setFailed(true)}
         className={`h-full w-full object-cover ${className}`}
-        loading="lazy"
+        style={{ objectPosition: position }}
       />
     );
   }

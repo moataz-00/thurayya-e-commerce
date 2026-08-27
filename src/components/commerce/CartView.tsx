@@ -96,7 +96,7 @@ export function CartView({ crossSell }: { crossSell: Product[] }) {
                   href={routes.product(locale, line.slug)}
                   className="aspect-4/5 w-[112px] bg-surface-2 sm:w-auto"
                 >
-                  <ShotSlot showLabel={false} tone={2} />
+                  <ShotSlot showLabel={false} tone={2} src={product?.shots[0]?.src} sizes="140px" />
                 </Link>
 
                 <div className="flex flex-col gap-2.5">
