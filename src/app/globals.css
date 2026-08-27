@@ -1,0 +1,554 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Thurayya - design tokens
+   Source of truth: docs/DESIGN-SYSTEM.md
+   Colour shares: ivory 55% | onyx 30% | taupe 10% | brass 5% | emerald limited
+   ========================================================================== */
+
+@theme {
+  /* --- Brand palette ---------------------------------------------------- */
+  --color-onyx: #161819;
+  --color-onyx-deep: #0e0f10;
+  --color-ivory: #f2eee5;
+  --color-brass: #a9844f;
+  --color-taupe: #b7aa98;
+  --color-emerald: #183c36;
+
+  /* --- Functional ------------------------------------------------------- */
+  --color-ink: #161819;
+  --color-body: #4e4a45;
+  --color-muted: #8a8073;
+  --color-danger: #9c3a2c;
+
+  /* --- Placeholder / surface tones (photography stand-ins) -------------- */
+  --color-surface-1: #e4ddd0;
+  --color-surface-2: #dbd3c4;
+  --color-surface-3: #cfc6b5;
+  --color-surface-4: #c9c0b0;
+
+  /* --- Typography ------------------------------------------------------- */
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  --font-arabic-display: "Reem Kufi", "Cormorant Garamond", serif;
+  --font-arabic: "IBM Plex Sans Arabic", "Manrope", system-ui, sans-serif;
+
+  /* --- Layout ----------------------------------------------------------- */
+  --container-content: 1440px;
+
+  /* --- Motion ----------------------------------------------------------- */
+  --ease-thurayya: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* --- Named animations ------------------------------------------------- */
+  --animate-t-glow: tGlow 6s ease-in-out infinite;
+  --animate-t-fade: tFade 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes tGlow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes tFade {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes tSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+@layer base {
+  :root {
+    /* Sticky offsets - see docs/DESIGN-SYSTEM.md, Layout section */
+    --header-h: 124px;
+    --sticky-top: 88px;
+    color-scheme: light;
+  }
+
+  * {
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 14.5px;
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Arabic runs +0.5px and +0.1 line-height against Latin for optical balance */
+  html[lang="ar"] body {
+    font-family: var(--font-arabic);
+    font-size: 15px;
+    line-height: 2;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  html[lang="ar"] h1,
+  html[lang="ar"] h2,
+  html[lang="ar"] h3,
+  html[lang="ar"] h4 {
+    font-family: var(--font-arabic-display);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.4;
+  }
+
+  p {
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: rgb(169 132 79 / 0.28);
+  }
+
+  /* Focus is a 2px brass outline at 3px offset - never removed. */
+  :focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 3px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(169 132 79 / 0.4);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(169 132 79 / 0.65);
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  ::placeholder {
+    color: var(--color-muted);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   Components - the repeating primitives of the kit
+   ========================================================================== */
+
+@layer components {
+  /* --- Layout ----------------------------------------------------------- */
+  .t-shell {
+    width: 100%;
+    max-width: var(--container-content);
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+  @media (min-width: 768px) {
+    .t-shell {
+      padding-inline: 24px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .t-shell {
+      padding-inline: 40px;
+    }
+  }
+
+  .t-screen {
+    animation: var(--animate-t-fade);
+  }
+
+  /* --- Type ------------------------------------------------------------- */
+  .t-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-brass);
+    line-height: 1.6;
+  }
+
+  .t-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    line-height: 1.6;
+  }
+
+  .t-mono {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .t-display {
+    font-family: var(--font-display);
+    font-weight: 300;
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+  }
+  html[lang="ar"] .t-display {
+    font-family: var(--font-arabic-display);
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+
+  /* --- Buttons ---------------------------------------------------------- */
+  .t-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 17px 32px;
+    border: 1px solid transparent;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease;
+    min-height: 44px;
+  }
+  html[lang="ar"] .t-btn {
+    letter-spacing: 0;
+    font-size: 12px;
+    text-transform: none;
+  }
+
+  .t-btn--primary {
+    background: var(--color-onyx);
+    color: var(--color-ivory);
+  }
+  .t-btn--primary:hover {
+    background: var(--color-brass);
+    color: var(--color-onyx);
+  }
+
+  .t-btn--brass {
+    background: var(--color-brass);
+    color: var(--color-onyx);
+  }
+  .t-btn--brass:hover {
+    background: var(--color-ivory);
+    color: var(--color-onyx);
+  }
+
+  .t-btn--outline {
+    background: transparent;
+    color: var(--color-ink);
+    border-color: rgb(22 24 25 / 0.35);
+  }
+  .t-btn--outline:hover {
+    border-color: var(--color-brass);
+    color: var(--color-brass);
+  }
+
+  .t-btn--ghost {
+    background: transparent;
+    color: var(--color-ivory);
+    border-color: rgb(242 238 229 / 0.4);
+  }
+  .t-btn--ghost:hover {
+    border-color: var(--color-brass);
+    color: var(--color-brass);
+  }
+
+  .t-btn:disabled,
+  .t-btn[aria-disabled="true"] {
+    background: transparent;
+    color: var(--color-muted);
+    border-color: rgb(22 24 25 / 0.15);
+    cursor: not-allowed;
+  }
+
+  /* --- Text link with brass underline ----------------------------------- */
+  .t-link {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-brass);
+    padding-bottom: 4px;
+    transition: color 0.3s ease;
+  }
+  .t-link:hover {
+    color: var(--color-brass);
+  }
+  html[lang="ar"] .t-link {
+    letter-spacing: 0;
+    text-transform: none;
+    font-size: 12.5px;
+  }
+
+  /* --- Fields ----------------------------------------------------------- */
+  .t-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .t-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(22 24 25 / 0.28);
+    padding: 11px 0;
+    font-size: 14px;
+    color: var(--color-ink);
+    outline: none;
+    border-radius: 0;
+    transition: border-color 0.25s ease;
+    width: 100%;
+  }
+  .t-input:focus {
+    border-bottom-color: var(--color-brass);
+  }
+  .t-input:disabled {
+    background: rgb(183 170 152 / 0.2);
+    border-bottom-color: rgb(22 24 25 / 0.12);
+    color: rgb(22 24 25 / 0.35);
+    padding-inline: 10px;
+  }
+  .t-input[aria-invalid="true"] {
+    border-bottom-color: var(--color-danger);
+  }
+
+  .t-input--dark {
+    color: var(--color-ivory);
+    border-bottom-color: rgb(242 238 229 / 0.3);
+  }
+
+  .t-textarea {
+    background: transparent;
+    border: 1px solid rgb(22 24 25 / 0.2);
+    padding: 14px;
+    font-size: 14px;
+    color: var(--color-ink);
+    outline: none;
+    min-height: 110px;
+    resize: vertical;
+    border-radius: 0;
+    width: 100%;
+    line-height: 1.8;
+  }
+  .t-textarea:focus {
+    border-color: var(--color-brass);
+  }
+
+  .t-select {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(22 24 25 / 0.28);
+    padding: 11px 0;
+    font-size: 14px;
+    color: var(--color-body);
+    outline: none;
+    border-radius: 0;
+    width: 100%;
+    cursor: pointer;
+  }
+  .t-select:focus {
+    border-bottom-color: var(--color-brass);
+  }
+
+  /* --- Rules and surfaces ----------------------------------------------- */
+  .t-rule {
+    height: 1px;
+    background: rgb(22 24 25 / 0.12);
+    border: 0;
+  }
+  .t-rule--dark {
+    background: rgb(242 238 229 / 0.12);
+  }
+
+  .t-panel {
+    background: rgb(183 170 152 / 0.24);
+  }
+
+  /* --- Diamond bullet --------------------------------------------------- */
+  .t-diamond {
+    width: 7px;
+    height: 7px;
+    border: 1px solid var(--color-brass);
+    transform: rotate(45deg);
+    flex: none;
+  }
+
+  /* --- Placeholder shot ------------------------------------------------- */
+  .t-shot {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: repeating-linear-gradient(
+      135deg,
+      rgb(22 24 25 / 0.05) 0px,
+      rgb(22 24 25 / 0.05) 1px,
+      transparent 1px,
+      transparent 10px
+    );
+  }
+  .t-shot::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(120% 90% at 50% 15%, rgb(242 238 229 / 0.28), transparent 70%);
+  }
+  .t-shot--dark {
+    background: repeating-linear-gradient(
+      135deg,
+      rgb(242 238 229 / 0.06) 0px,
+      rgb(242 238 229 / 0.06) 1px,
+      transparent 1px,
+      transparent 10px
+    );
+  }
+  .t-shot--dark::before {
+    background: radial-gradient(120% 90% at 50% 15%, rgb(169 132 79 / 0.18), transparent 70%);
+  }
+
+  /* --- Warm glow behind a lit product ----------------------------------- */
+  .t-glow {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgb(169 132 79 / 0.22), transparent 60%);
+    animation: tGlow 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* --- Skeleton --------------------------------------------------------- */
+  .t-skeleton {
+    background: rgb(22 24 25 / 0.07);
+    animation: tGlow 1.6s ease-in-out infinite;
+  }
+
+  /* --- Prose (journal article body) ------------------------------------- */
+  .t-prose p {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--color-body);
+    margin-bottom: 22px;
+  }
+  .t-prose h2 {
+    font-size: 32px;
+    margin: 44px 0 18px;
+  }
+  .t-prose h3 {
+    font-size: 24px;
+    margin: 34px 0 14px;
+  }
+  .t-prose ul {
+    margin: 0 0 22px;
+    padding-inline-start: 20px;
+    color: var(--color-body);
+    font-size: 15px;
+    line-height: 2;
+  }
+  .t-prose li {
+    margin-bottom: 8px;
+  }
+  .t-prose strong {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
+@layer utilities {
+  .t-no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .t-no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Mirror a glyph in RTL (chevrons, arrows). Never applied to photography. */
+  [dir="rtl"] .t-mirror {
+    transform: scaleX(-1);
+  }
+
+  .t-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
